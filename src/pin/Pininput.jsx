@@ -33,11 +33,13 @@ function Pininput({ noOfBoxes = 5, length = 2, onChange }) {
 
   const handlePaste = (e) => {
     e.preventDefault();
+
+    
     const pasteValue = e.clipboardData
       .getData("text")
-      .split("")
-      .filter((a, i) => i < length * noOfBoxes);
-
+      .match(/.{1,2}/g)
+      .filter((a, i) => i <  noOfBoxes);
+      console.log(e.clipboardData.getData("text"),pasteValue);
     pasteValue.forEach((char, i) => {
       values[i] = char;
       console.log(ref.current[i]);
@@ -94,3 +96,5 @@ function Pininput({ noOfBoxes = 5, length = 2, onChange }) {
 }
 
 export default Pininput;
+
+// 1234557899
